@@ -3,7 +3,7 @@ node{
 
   	 // Checkout stage
    	stage('CheckoutCode'){
-   	git branch: 'development ', credentialsId: '1358129b-d0cb-468d-b528-6919a0509bb8', url: 'https://github.com/TheAmitDeokar/mavenwebapp.git.git'
+   	git branch: 'development ', credentialsId: '1358129b-d0cb-468d-b528-6919a0509bb8', url: 'https://github.com/TheAmitDeokar/mavenwebapp.git'
     	 }
 
    	// Build stage
