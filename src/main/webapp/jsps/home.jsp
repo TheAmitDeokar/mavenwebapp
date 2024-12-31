@@ -10,7 +10,7 @@
 </head>
 <body>
 <h1 align="center"> Welcome to ABD</h1>
-<h1 align="center">Pune, MH</h1>
+<h1 align="center">Pune</h1>
 <h1 align="center">India</h1>
 <hr>
 <br>
