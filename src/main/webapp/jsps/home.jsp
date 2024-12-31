@@ -9,9 +9,9 @@
 </head>
 </head>
 <body>
-<h1 align="center"> Welcome</h1>
-<h1 align="center">Pune, MH</h1>
-<h1 align="center">India</h1>
+<h1 align="center">Welcome</h1>
+<h1 align="center">Pune</h1>
+<h1 align="center">MH, India</h1>
 <hr>
 <br>
 	<h1><h3> Server Side IP Address </h3><br>
