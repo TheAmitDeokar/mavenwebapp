@@ -31,10 +31,6 @@ out.println("Server Host Name :: "+inetAddress.getHostName());
 <%out.print( "Client Name Host :: "+ request.getRemoteHost() );%><br></h1>
 <hr>
 
-<hr>
-	<p> Service : <a href="services/employee/getEmployeeDetails">Get Employee Details </p>
-<hr>
-
 
 </body>
 </html>
