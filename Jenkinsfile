@@ -19,7 +19,7 @@ node{
    	git branch: 'development ', credentialsId: '1358129b-d0cb-468d-b528-6919a0509bb8', url: 'https://github.com/TheAmitDeokar/mavenwebapp.git'
     	 }
 
-   	// Build stage
+   	// Build stagee
    	stage('Build'){
 	sh "$mavenHome/bin/mvn clean package"
          }
