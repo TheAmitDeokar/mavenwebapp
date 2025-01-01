@@ -1,6 +1,8 @@
 node{
 	def mavenHome = tool name: "maven3.9.9"
- 
+
+	buildName 'Dev -  ${BUILD_NUMBER}'  // Changes buil name like from 20 to Dev - 20
+	
 	echo "The NODE_NAME is :  ${env.NODE_NAME} "
 
 	echo "The JOB_NAME is :  ${env.JOB_NAME} "
@@ -13,8 +15,7 @@ node{
 	properties([pipelineTriggers([githubPush()])])
   	 
 	// Checkout stage
-   	stage('CheckoutCode'){
-        buildName 'Dev -  ${env.BUILD_NUMBER}'  // Changes buil name like from 20 to Dev - 20
+   	stage('CheckoutCode'){ 
    	git branch: 'development ', credentialsId: '1358129b-d0cb-468d-b528-6919a0509bb8', url: 'https://github.com/TheAmitDeokar/mavenwebapp.git'
     	 }
 
