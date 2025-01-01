@@ -6,6 +6,9 @@ node{
 	echo "The JOB_NAME is :  ${env.JOB_NAME} "
 
 	echo "The BUILD_NUMBER is :  ${env.BUILD_NUMBER} "
+
+        properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([githubPush()])])
+	
   	 // Checkout stage
    	stage('CheckoutCode'){
    	git branch: 'development ', credentialsId: '1358129b-d0cb-468d-b528-6919a0509bb8', url: 'https://github.com/TheAmitDeokar/mavenwebapp.git'
