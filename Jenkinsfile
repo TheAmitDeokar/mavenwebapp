@@ -7,9 +7,12 @@ node{
 
 	echo "The BUILD_NUMBER is :  ${env.BUILD_NUMBER} "
 
+	// To keep last 5 buil only, old one will be delete
         properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([])])
+	// Github will notify to jenkins once changes/commit is done in github
 	properties([pipelineTriggers([githubPush()])])
-  	 // Checkout stage
+  	 
+	// Checkout stage
    	stage('CheckoutCode'){
    	git branch: 'development ', credentialsId: '1358129b-d0cb-468d-b528-6919a0509bb8', url: 'https://github.com/TheAmitDeokar/mavenwebapp.git'
     	 }
