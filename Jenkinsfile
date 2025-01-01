@@ -9,11 +9,12 @@ node{
 
 	// To keep last 5 buil only, old one will be delete
         properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5')), pipelineTriggers([])])
-	// Github will notify to jenkins once changes/commit is done in github
+	// Github will notify to jenkins once changes/commit is done in github and jenkins starts build automatically 
 	properties([pipelineTriggers([githubPush()])])
   	 
 	// Checkout stage
    	stage('CheckoutCode'){
+        buildName 'Dev -  ${env.BUILD_NUMBER}'  // Changes buil name like from 20 to Dev - 20
    	git branch: 'development ', credentialsId: '1358129b-d0cb-468d-b528-6919a0509bb8', url: 'https://github.com/TheAmitDeokar/mavenwebapp.git'
     	 }
 
