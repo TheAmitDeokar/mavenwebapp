@@ -1,5 +1,5 @@
 node{
-	def mavenHome = tool name: "maven3.9.9"
+	def mavenHome = tool name: "maven3.9.8"
 
 	buildName 'Dev -  ${BUILD_NUMBER}'  // Changes buil name like from 20 to Dev - 20
 	buildDescription 'Pipeline Script - Scriptedway' // will add des about build
