@@ -52,7 +52,7 @@ node{
 	sendSlacknotification('STARTED')
    	git branch: 'development ', credentialsId: '1358129b-d0cb-468d-b528-6919a0509bb8', url: 'https://github.com/TheAmitDeokar/mavenwebapp.git'
     	 }
-
+/*
    	// Build stagee
    	stage('Build'){
 	sh "$mavenHome/bin/mvn clean package"
@@ -73,7 +73,7 @@ node{
         sshagent(['9c342b89-95b4-43c0-a167-b09179544e5d']) {
           sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@15.207.16.174:/opt/apache-tomcat-9.0.98/webapps"
          }
-        }
+        } */
 
   } // try blcok closing
    catch(e){
