@@ -16,7 +16,7 @@ color = 'YELLOW'
 colorCode = '#FFFF00'
 } else if (buildStatus == 'SUCCESSFUL'){
 color = 'GREEN'
-colorCode = '#00F00'
+colorCode = '#00FF00'
 
 } else {
 color = 'RED'
