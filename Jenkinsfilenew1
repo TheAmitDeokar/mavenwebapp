@@ -38,10 +38,10 @@ node{
         }
    
        // Deploy application into Tomcat server
-	stage('DeployAppIntoTomcat'){
-        sshagent(['9c342b89-95b4-43c0-a167-b09179544e5d']) {
-          sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.111.41.75:/opt/apache-tomcat-9.0.98/webapps"
-         }
-        }
+//	stage('DeployAppIntoTomcat'){
+//      sshagent(['9c342b89-95b4-43c0-a167-b09179544e5d']) {
+//        sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.111.41.75:/opt/apache-tomcat-9.0.98/webapps"
+ //        }
+  //      }
    
     } // node closing
