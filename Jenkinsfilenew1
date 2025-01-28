@@ -7,6 +7,6 @@ node{
     	}
 
         stage('build'){
-        sh "docker build -t theamitdeokar/maven-web-application:2 ."
+        sh "sudo docker build -t theamitdeokar/maven-web-application:2 ."
         }
     } // node closing
