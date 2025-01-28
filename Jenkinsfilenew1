@@ -8,6 +8,6 @@ node{
 
        // Build using Dockerfile
        stage('BuildwithDocker'){
-       docker build -t theamitdeokar/maven-web-application:2 .
+       sh docker build -t theamitdeokar/maven-web-application:2 .
        }
     } // node closing
