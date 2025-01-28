@@ -15,7 +15,7 @@ node{
 	// To keep last 5 buil only, old one will be delete
         properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5', removeLastBuild: true)), pipelineTriggers([])])
 	// Github will notify to jenkins once changes/commit is done in github and jenkins starts build automatically 
-//	properties([pipelineTriggers([githubPush()])])
+	properties([pipelineTriggers([githubPush()])])
   	 
 	// Checkout stage
    	stage('CheckoutCode'){ 
@@ -40,7 +40,7 @@ node{
        // Deploy application into Tomcat server
 	stage('DeployAppIntoTomcat'){
         sshagent(['9c342b89-95b4-43c0-a167-b09179544e5d']) {
-          sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@15.207.16.174:/opt/apache-tomcat-9.0.98/webapps"
+          sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.110.56.244:/opt/apache-tomcat-9.0.98/webapps"
          }
         }
    
