@@ -7,7 +7,7 @@ node{
     	}
 
         stage('build'){
-       sh "sudo usermod -aG docker $USER"
+       sh "sudo usermod -aG docker ubuntu"
         sh "docker build -t theamitdeokar/maven-web-application:2 ."
         }
     } // node closing
