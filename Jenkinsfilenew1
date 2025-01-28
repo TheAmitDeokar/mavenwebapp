@@ -8,7 +8,6 @@ node{
 
        // Build using Dockerfile
        stage('BuildwithDocker'){
-      sh 'docker login -u theamitdeokar -p Abd@563356'
        sh 'docker build -t theamitdeokar/maven-web-application:2 .'
        }
     } // node closing
