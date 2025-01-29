@@ -1,47 +1,40 @@
-
-
-
 node{
-	def mavenHome = tool name: "maven3.9.8"
-
-	buildName 'Dev -  ${BUILD_NUMBER}'  // Changes buil name like from 20 to Dev - 20
-	buildDescription 'Pipeline Script - Scriptedway' // will add des about build
-	echo "The NODE_NAME is :  ${env.NODE_NAME} "
-
-	echo "The JOB_NAME is :  ${env.JOB_NAME} "
-
-	echo "The BUILD_NUMBER is :  ${env.BUILD_NUMBER} "
-
-	// To keep last 5 buil only, old one will be delete
+    def mavenHome = tool name: "maven3.9.9"
+    def buildNumber = BUILD_NUMBER
+    
+    // To keep last 5 buil only, old one will be delete
         properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5', removeLastBuild: true)), pipelineTriggers([])])
-	// Github will notify to jenkins once changes/commit is done in github and jenkins starts build automatically 
-	properties([pipelineTriggers([githubPush()])])
-  	 
-	// Checkout stage
-   	stage('CheckoutCode'){ 
-   	git branch: 'development ', credentialsId: '1358129b-d0cb-468d-b528-6919a0509bb8', url: 'https://github.com/TheAmitDeokar/mavenwebapp.git'
-    	 }
-
-   	// Build stagee
-   	stage('Build'){
+	
+       // Github will notify to jenkins once changes/commit is done in github and jenkins starts build automatically 
+       properties([pipelineTriggers([githubPush()])])
+    
+    // Checkout stage
+    stage('Git Clone'){
+        git branch: 'development', credentialsId: 'fc94c29f-d9da-45c5-b7e5-b7af1b566cc2', url: 'https://github.com/TheAmitDeokar/mavenwebapp.git'
+    }
+    
+    // Build stagee
+   	stage('Build app package'){
 	sh "$mavenHome/bin/mvn clean package"
          }
-
-        // Generate SonarQube Report
-        stage('GenerateSonarQubeReport'){
-        sh "$mavenHome/bin/mvn sonar:sonar"
-        }
-
-	// Upload artifact into Artifactory repository 
-        stage('UploadSonarQubeReport'){
-        sh "$mavenHome/bin/mvn deploy"
-        }
-   
-       // Deploy application into Tomcat server
-	stage('DeployAppIntoTomcat'){
-        sshagent(['9c342b89-95b4-43c0-a167-b09179544e5d']) {
-          sh "scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@3.110.56.244:/opt/apache-tomcat-9.0.98/webapps"
-         }
-        }
-   
-    } // node closing
+         
+    // Build Docker Image
+    stage('Build Docker image'){
+        sh "docker build -t theamitdeokar/maven-web-application:${buildNumber} ."
+    }
+    
+    // Docker Login and push image
+    stage('Docker Login and push image'){
+        sh "docker login -u theamitdeokar -p Abd@563356"
+        sh "docker push theamitdeokar/maven-web-application:${buildNumber}"
+    }
+    
+     stage('Deploy App as Docker Container in Docker Deployment server'){
+        sshagent(['Docker_Dev_Server_SSH']) {
+  
+          sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.14 docker rm -f mavenwebappcontainer || true"
+     
+          sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.14 docker run -d -p 8081:8080 --name mavenwebappcontainer theamitdeokar/maven-web-application:${buildNumber}" 
+    }
+     }
+}
