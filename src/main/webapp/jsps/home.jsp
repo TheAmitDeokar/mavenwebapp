@@ -10,7 +10,6 @@
 </head>
 <body>
 <h1 align="center">Welcome ABD</h1>
-<h1 align="center">To</h1>
 <h1 align="center">Hinjewadi Pune</h1>
 <h1 align="center">MH, India</h1>
 <hr>
