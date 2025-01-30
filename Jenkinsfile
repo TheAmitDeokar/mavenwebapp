@@ -25,7 +25,9 @@ node{
     
     // Docker Login and push image
     stage('Docker Login and push image'){
-        sh "docker login -u theamitdeokar -p Abd@563356"
+        withCredentials([string(credentialsId: 'DockerHubCredentails', variable: 'DockerHubCredentails')]) {
+        sh "docker login -u theamitdeokar -p ${DockerHubCredentails}"
+        }
         sh "docker push theamitdeokar/maven-web-application:${buildNumber}"
     }
     
