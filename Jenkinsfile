@@ -30,7 +30,8 @@ node{
         }
         sh "docker push theamitdeokar/maven-web-application:${buildNumber}"
     }
-    
+
+    // Deploy App as Docker Container in Docker Deployment server
      stage('Deploy App as Docker Container in Docker Deployment server'){
         sshagent(['Docker_Dev_Server_SSH']) {
   
