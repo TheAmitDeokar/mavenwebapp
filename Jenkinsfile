@@ -12,11 +12,12 @@ node{
     stage('Git Clone'){
         git branch: 'development', credentialsId: 'fc94c29f-d9da-45c5-b7e5-b7af1b566cc2', url: 'https://github.com/TheAmitDeokar/mavenwebapp.git'
     }
-    
+   
     // Build stagee
    	stage('Build app package'){
 	sh "$mavenHome/bin/mvn clean package"
          }
+
          
     // Build Docker Image
     stage('Build Docker image'){
