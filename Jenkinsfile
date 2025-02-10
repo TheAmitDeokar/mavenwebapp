@@ -35,9 +35,9 @@ node{
      stage('Deploy App as Docker Container in Docker Deployment server'){
         sshagent(['ubuntudeploymentserver']) {
   
-          sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.14 docker rm -f mavenwebappcontainer || true"
+          sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.42.185 docker rm -f mavenwebappcontainer || true"
      
-          sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.13.14 docker run -d -p 8081:8080 --name mavenwebappcontainer theamitdeokar/maven-web-application:${buildNumber}" 
+          sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.42.185 docker run -d -p 8081:8080 --name mavenwebappcontainer theamitdeokar/maven-web-application:${buildNumber}" 
     }
      }
          
