@@ -2,7 +2,14 @@
 node{
     def mavenHome = tool name: "maven3.9.9"
     def buildNumber = BUILD_NUMBER
-    
+
+// To keep last 5 buil only, old one will be delete
+        properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '5', daysToKeepStr: '', numToKeepStr: '5', removeLastBuild: true)), pipelineTriggers([])])
+	
+       // Github will notify to jenkins once changes/commit is done in github and jenkins starts build automatically 
+       properties([pipelineTriggers([githubPush()])])
+
+	
     // Checkout stage
     stage('Git Clone'){
         git branch: 'development', credentialsId: 'GithubCred', url: 'https://github.com/TheAmitDeokar/mavenwebapp.git'
