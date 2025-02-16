@@ -41,7 +41,7 @@ node{
 
           sh "aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 686255940829.dkr.ecr.ap-south-1.amazonaws.com" 
 
-         sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.43.211 docker run -d --name mavenwebappcontainer -p 8081:8080 686255940829.dkr.ecr.ap-south-1.amazonaws.com/maven-web-application:${buildNumber}"  
+         sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.43.211 docker run -d --name mavenwebappcontainer -p 8081:8080 686255940829.dkr.ecr.ap-south-1.amazonaws.com/maven-web-application:10"  
     }
      }
 
